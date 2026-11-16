@@ -1,0 +1,167 @@
+{
+  "variant": "without_page_values",
+  "method": "SHAP TreeExplainer (exact TreeSHAP, tree_path_dependent)",
+  "explains": "raw_model_score",
+  "output_units": "Raw Random Forest score for 'purchase' (average of tree votes, 0-1, uncalibrated). Contributions are in the same units: +0.05 means the feature raised the raw score by 0.05.",
+  "baseline_score": 0.4999999999999979,
+  "baseline_description": "The model's average raw score over its training data with purchases and non-purchases weighted equally (the forest was trained with balanced class weights), so it is 0.5. It is a balanced reference point, not the score of an average session.",
+  "typical_session_score": 0.3114098093043656,
+  "global_sample": {
+    "source": "test split (reporting only)",
+    "n": 400,
+    "random_state": 43
+  },
+  "aggregation": "one-hot columns summed back to their original feature; numeric and boolean columns map 1:1. Additivity is preserved.",
+  "model_sha256": "75f670c49a9435b8ea6ac9e34bbea377d9425c8b19fd83a61104a6d1e811e2d2",
+  "shap_version": "0.54.1",
+  "created_at": "2026-11-15T08:20:05+00:00",
+  "n_sessions": 400,
+  "max_additivity_error": 2.0528023725319144e-12,
+  "mean_model_score": 0.3114098093043656,
+  "features": [
+    {
+      "feature": "ExitRates",
+      "label": "Exit rate",
+      "mean_abs_contribution": 0.06731737261937246,
+      "share_of_total": 0.17638384522440217,
+      "mean_contribution": -0.03383580542000316,
+      "share_of_sessions_increasing": 0.4875,
+      "share_of_sessions_decreasing": 0.5125
+    },
+    {
+      "feature": "ProductRelated_Duration",
+      "label": "Time on product pages",
+      "mean_abs_contribution": 0.04891240562189439,
+      "share_of_total": 0.12815946088012703,
+      "mean_contribution": -0.02796424731151645,
+      "share_of_sessions_increasing": 0.505,
+      "share_of_sessions_decreasing": 0.495
+    },
+    {
+      "feature": "Month",
+      "label": "Month",
+      "mean_abs_contribution": 0.04875646227279777,
+      "share_of_total": 0.12775086074496791,
+      "mean_contribution": -0.016105057176384115,
+      "share_of_sessions_increasing": 0.2875,
+      "share_of_sessions_decreasing": 0.7125
+    },
+    {
+      "feature": "BounceRates",
+      "label": "Bounce rate",
+      "mean_abs_contribution": 0.03772598866974645,
+      "share_of_total": 0.09884899970898685,
+      "mean_contribution": -0.014773079546515046,
+      "share_of_sessions_increasing": 0.5025,
+      "share_of_sessions_decreasing": 0.4975
+    },
+    {
+      "feature": "TrafficType",
+      "label": "Traffic source",
+      "mean_abs_contribution": 0.02805696808275254,
+      "share_of_total": 0.07351439492084487,
+      "mean_contribution": -0.011714467478899265,
+      "share_of_sessions_increasing": 0.4025,
+      "share_of_sessions_decreasing": 0.5975
+    },
+    {
+      "feature": "ProductRelated",
+      "label": "Product pages viewed",
+      "mean_abs_contribution": 0.02452103889698695,
+      "share_of_total": 0.06424961286000962,
+      "mean_contribution": -0.01987101846626642,
+      "share_of_sessions_increasing": 0.3075,
+      "share_of_sessions_decreasing": 0.6925
+    },
+    {
+      "feature": "Administrative",
+      "label": "Administrative pages",
+      "mean_abs_contribution": 0.02296019217997873,
+      "share_of_total": 0.06015990859736039,
+      "mean_contribution": -0.011038153172500507,
+      "share_of_sessions_increasing": 0.415,
+      "share_of_sessions_decreasing": 0.585
+    },
+    {
+      "feature": "VisitorType",
+      "label": "Visitor type",
+      "mean_abs_contribution": 0.022880075625763937,
+      "share_of_total": 0.059949988552226774,
+      "mean_contribution": -0.00815753382055372,
+      "share_of_sessions_increasing": 0.1425,
+      "share_of_sessions_decreasing": 0.8575
+    },
+    {
+      "feature": "Administrative_Duration",
+      "label": "Time on administrative pages",
+      "mean_abs_contribution": 0.02284122559366816,
+      "share_of_total": 0.05984819435287663,
+      "mean_contribution": -0.01646432431879312,
+      "share_of_sessions_increasing": 0.2975,
+      "share_of_sessions_decreasing": 0.7025
+    },
+    {
+      "feature": "OperatingSystems",
+      "label": "Operating system",
+      "mean_abs_contribution": 0.014953784746692844,
+      "share_of_total": 0.03918165477421874,
+      "mean_contribution": -0.006099298684405677,
+      "share_of_sessions_increasing": 0.505,
+      "share_of_sessions_decreasing": 0.495
+    },
+    {
+      "feature": "SpecialDay",
+      "label": "Closeness to a special day",
+      "mean_abs_contribution": 0.007965173151266632,
+      "share_of_total": 0.020870212452324233,
+      "mean_contribution": -0.0014855830748805293,
+      "share_of_sessions_increasing": 0.9125,
+      "share_of_sessions_decreasing": 0.0875
+    },
+    {
+      "feature": "Informational",
+      "label": "Informational pages",
+      "mean_abs_contribution": 0.007832752922758307,
+      "share_of_total": 0.02052324720129079,
+      "mean_contribution": -0.0031080388258206615,
+      "share_of_sessions_increasing": 0.2175,
+      "share_of_sessions_decreasing": 0.7825
+    },
+    {
+      "feature": "Region",
+      "label": "Region",
+      "mean_abs_contribution": 0.007643346304473142,
+      "share_of_total": 0.020026967172166867,
+      "mean_contribution": -0.006975485816611742,
+      "share_of_sessions_increasing": 0.0925,
+      "share_of_sessions_decreasing": 0.9075
+    },
+    {
+      "feature": "Informational_Duration",
+      "label": "Time on informational pages",
+      "mean_abs_contribution": 0.007619324692295993,
+      "share_of_total": 0.019964026148781244,
+      "mean_contribution": -0.003926036120060636,
+      "share_of_sessions_increasing": 0.1175,
+      "share_of_sessions_decreasing": 0.8825
+    },
+    {
+      "feature": "Browser",
+      "label": "Browser",
+      "mean_abs_contribution": 0.006190741380545453,
+      "share_of_total": 0.016220876231527088,
+      "mean_contribution": -0.004611956097828646,
+      "share_of_sessions_increasing": 0.15,
+      "share_of_sessions_decreasing": 0.85
+    },
+    {
+      "feature": "Weekend",
+      "label": "Weekend visit",
+      "mean_abs_contribution": 0.005475857745054955,
+      "share_of_total": 0.014347750177888937,
+      "mean_contribution": -0.002460105364612949,
+      "share_of_sessions_increasing": 0.1825,
+      "share_of_sessions_decreasing": 0.8175
+    }
+  ]
+}

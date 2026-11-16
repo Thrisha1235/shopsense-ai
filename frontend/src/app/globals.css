@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/*
+ * ShopSense AI - light theme with restrained blue accents.
+ * Chart colours follow the validated reference palette (blue #2a78d6 = series 1).
+ */
+@theme inline {
+  --font-sans: var(--font-geist-sans), system-ui, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-page: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-line: #e4e6eb;
+  --color-line-strong: #d3d6dd;
+
+  --color-ink: #0f172a;
+  --color-ink-2: #475569;
+  --color-ink-3: #556070; /* >= 5.8:1 on page, card and tint backgrounds (WCAG AA) */
+
+  --color-brand-50: #eef5fd;
+  --color-brand-100: #cde2fb;
+  --color-brand-200: #9ec5f4;
+  --color-brand-400: #3987e5;
+  --color-brand-500: #2a78d6;
+  --color-brand-600: #1c5cab;
+  --color-brand-700: #0d366b;
+
+  --color-good: #0a7a0a;
+  --color-good-bg: #e9f6e9;
+  --color-warn: #8a5a00;
+  --color-warn-bg: #fff6e0;
+  --color-bad: #b42323;
+  --color-bad-bg: #fdecec;
+}
+
+html {
+  background: var(--color-page);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numbers that align in columns (tables, axis ticks) use tabular figures. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Recharts: recessive axes and grid */
+.recharts-cartesian-axis-tick-value {
+  fill: #64748b;
+  font-size: 12px;
+}
+.recharts-cartesian-grid line {
+  stroke: #e9ebef;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

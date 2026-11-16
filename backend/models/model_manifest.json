@@ -1,0 +1,213 @@
+{
+  "default_model": "without_page_values",
+  "created_at": "2026-11-14T06:09:19+00:00",
+  "python_version": "3.13.2",
+  "sklearn_version": "1.9.1",
+  "dataset_sha256": "b3055ee355f59134d851d32641183cb4a8b45def7124d2f50442a042f358e0d9",
+  "random_state": 42,
+  "load_with": "ml.inference.load_model()  (joblib - load only files you trust)",
+  "models": {
+    "with_page_values": {
+      "model_file": "purchase_model_with_page_values.joblib",
+      "preprocessor_file": "preprocessor_with_page_values.joblib",
+      "algorithm": "random_forest",
+      "algorithm_label": "Random Forest",
+      "best_params": {
+        "class_weight": null,
+        "max_depth": null,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.31438115665325556,
+      "required_features": [
+        "Administrative",
+        "Administrative_Duration",
+        "Informational",
+        "Informational_Duration",
+        "ProductRelated",
+        "ProductRelated_Duration",
+        "BounceRates",
+        "ExitRates",
+        "PageValues",
+        "SpecialDay",
+        "Month",
+        "VisitorType",
+        "OperatingSystems",
+        "Browser",
+        "Region",
+        "TrafficType",
+        "Weekend"
+      ],
+      "excluded_features": [],
+      "cv_pr_auc_mean": 0.7488816681956343,
+      "test_metrics_at_threshold": {
+        "pr_auc": 0.7276003645406677,
+        "roc_auc": 0.917579463576891,
+        "f1": 0.6593406593406593,
+        "precision": 0.6178489702517163,
+        "recall": 0.7068062827225131,
+        "accuracy": 0.8868613138686131
+      },
+      "valid_when": "Valid only when PageValues is computed from HISTORICAL page values that exclude the current session's own transaction (e.g. a nightly lookup of each page's value). If PageValues is calculated after the session ends it encodes the outcome, and scores will be over-optimistic.",
+      "calibration": {
+        "status": "validated",
+        "method": "sigmoid",
+        "calibrator_file": "calibrator_with_page_values.joblib",
+        "model_sha256": "07a5d95e4b6c5e0eaa186aca03133e29ee6d65469be4d1d1afce7b2afc851214",
+        "criteria": {
+          "max_ece": 0.05,
+          "max_abs_calibration_in_the_large": 0.02,
+          "min_brier_skill_score": 0.0,
+          "must_beat_raw_brier": true
+        },
+        "failures": [],
+        "decision_threshold_model_score": 0.31438115665325556,
+        "decision_threshold_probability": 0.33556171106093957,
+        "created_at": "2026-11-14T07:06:08+00:00",
+        "training_cv_metrics": {
+          "brier": 0.06912742426401189,
+          "brier_base_rate": 0.13077067635134615,
+          "brier_skill_score": 0.47138436388992266,
+          "log_loss": 0.22942297647290613,
+          "ece": 0.008464165525819786,
+          "calibration_in_the_large": 9.41391618058951e-06,
+          "mean_predicted": 0.15471338796322032,
+          "observed_rate": 0.15470397404703973,
+          "roc_auc": 0.9275835938165584,
+          "pr_auc": 0.7487278926999507,
+          "fold_brier": [
+            0.06947123154842891,
+            0.0709877246800208,
+            0.06746139097462003,
+            0.06549654065333048,
+            0.07222180182532235
+          ],
+          "passes": true,
+          "failures": []
+        },
+        "raw_training_cv_metrics": {
+          "brier": 0.07219174233930797,
+          "brier_base_rate": 0.13077067635134615,
+          "brier_skill_score": 0.4479516023504544,
+          "log_loss": 0.24260694813468123,
+          "ece": 0.036530584060776715,
+          "calibration_in_the_large": 0.00015100554959285306,
+          "mean_predicted": 0.15485497959663258,
+          "observed_rate": 0.15470397404703973,
+          "roc_auc": 0.9276474112897825,
+          "pr_auc": 0.749110077751166
+        },
+        "calibrator_sha256": "3de8cd83501a0c603ebfec866327e0b727919b4de2dd171996086942b2361ace"
+      },
+      "model_sha256": "07a5d95e4b6c5e0eaa186aca03133e29ee6d65469be4d1d1afce7b2afc851214",
+      "preprocessor_sha256": "9b26f2515682f5b6022a5b6d0d399128d0163bea2e364f552d4699312907f68d"
+    },
+    "without_page_values": {
+      "model_file": "purchase_model_without_page_values.joblib",
+      "preprocessor_file": "preprocessor_without_page_values.joblib",
+      "algorithm": "random_forest",
+      "algorithm_label": "Random Forest",
+      "best_params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": null,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.45030941527799795,
+      "required_features": [
+        "Administrative",
+        "Administrative_Duration",
+        "Informational",
+        "Informational_Duration",
+        "ProductRelated",
+        "ProductRelated_Duration",
+        "BounceRates",
+        "ExitRates",
+        "SpecialDay",
+        "Month",
+        "VisitorType",
+        "OperatingSystems",
+        "Browser",
+        "Region",
+        "TrafficType",
+        "Weekend"
+      ],
+      "excluded_features": [
+        "PageValues"
+      ],
+      "cv_pr_auc_mean": 0.3885404924919193,
+      "test_metrics_at_threshold": {
+        "pr_auc": 0.36152002202102324,
+        "roc_auc": 0.7657595642692769,
+        "f1": 0.4018604651162791,
+        "precision": 0.3116883116883117,
+        "recall": 0.5654450261780105,
+        "accuracy": 0.7392538523925385
+      },
+      "valid_when": "Does not use PageValues. Valid for sessions whose page counts, durations, bounce and exit rates are known. Trained on COMPLETED sessions, so scoring a session midway uses partial counts and durations and will usually under-estimate purchase likelihood.",
+      "calibration": {
+        "status": "validated",
+        "method": "sigmoid",
+        "calibrator_file": "calibrator_without_page_values.joblib",
+        "model_sha256": "75f670c49a9435b8ea6ac9e34bbea377d9425c8b19fd83a61104a6d1e811e2d2",
+        "criteria": {
+          "max_ece": 0.05,
+          "max_abs_calibration_in_the_large": 0.02,
+          "min_brier_skill_score": 0.0,
+          "must_beat_raw_brier": true
+        },
+        "failures": [],
+        "decision_threshold_model_score": 0.45030941527799795,
+        "decision_threshold_probability": 0.21456272144861338,
+        "created_at": "2026-11-14T07:06:21+00:00",
+        "training_cv_metrics": {
+          "brier": 0.1127551535737278,
+          "brier_base_rate": 0.13077067635134615,
+          "brier_skill_score": 0.13776423950898142,
+          "log_loss": 0.35838699893008646,
+          "ece": 0.005760477428861878,
+          "calibration_in_the_large": -6.6366542929297e-05,
+          "mean_predicted": 0.15463760750411043,
+          "observed_rate": 0.15470397404703973,
+          "roc_auc": 0.7838207458344952,
+          "pr_auc": 0.37303081025894985,
+          "fold_brier": [
+            0.11015159260702938,
+            0.11438314286113989,
+            0.11185743366180252,
+            0.11349766078342223,
+            0.11388651137531669
+          ],
+          "passes": true,
+          "failures": []
+        },
+        "raw_training_cv_metrics": {
+          "brier": 0.14512259889181783,
+          "brier_base_rate": 0.13077067635134615,
+          "brier_skill_score": -0.10974878268513244,
+          "log_loss": 0.44240410139772285,
+          "ece": 0.1623661394204444,
+          "calibration_in_the_large": 0.16236613942044437,
+          "mean_predicted": 0.3170701134674841,
+          "observed_rate": 0.15470397404703973,
+          "roc_auc": 0.7838620857247856,
+          "pr_auc": 0.3735283584385694
+        },
+        "calibrator_sha256": "7529227eea8c4199b7af27a596e5368934105aa58f262815244011ab6f9255d4"
+      },
+      "explanations": {
+        "method": "SHAP TreeExplainer (exact TreeSHAP, tree_path_dependent)",
+        "explains": "raw_model_score",
+        "output_units": "Raw Random Forest score for 'purchase' (average of tree votes, 0-1, uncalibrated). Contributions are in the same units: +0.05 means the feature raised the raw score by 0.05.",
+        "baseline_score": 0.4999999999999979,
+        "baseline_description": "The model's average raw score over its training data with purchases and non-purchases weighted equally (the forest was trained with balanced class weights), so it is 0.5. It is a balanced reference point, not the score of an average session.",
+        "typical_session_score": 0.3114098093043656,
+        "model_sha256": "75f670c49a9435b8ea6ac9e34bbea377d9425c8b19fd83a61104a6d1e811e2d2",
+        "shap_version": "0.54.1",
+        "created_at": "2026-11-15T08:20:05+00:00",
+        "additivity_tolerance": 1e-06,
+        "global_file": "reports/explanations/global_shap.json"
+      },
+      "model_sha256": "75f670c49a9435b8ea6ac9e34bbea377d9425c8b19fd83a61104a6d1e811e2d2",
+      "preprocessor_sha256": "8b0ed1ce1e5976542b3d8e5bf06b00e696a52d8ba18ea4b982e84dbc9e4ec374"
+    }
+  }
+}

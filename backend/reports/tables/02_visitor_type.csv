@@ -1,0 +1,4 @@
+VisitorType,sessions,purchases,no_purchase,conversion_rate,ci95_low,ci95_high,share_of_sessions
+Returning_Visitor,10551,1470,9081,0.139323,0.132847,0.146062,0.855718
+New_Visitor,1694,422,1272,0.249115,0.229102,0.270263,0.137388
+Other,85,16,69,0.188235,0.119320,0.284112,0.006894

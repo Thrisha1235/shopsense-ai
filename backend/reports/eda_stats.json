@@ -1,0 +1,532 @@
+{
+  "dataset": {
+    "source": "UCI Machine Learning Repository, dataset 468",
+    "file": "online_shoppers_intention.csv",
+    "sha256": "b3055ee355f59134d851d32641183cb4a8b45def7124d2f50442a042f358e0d9",
+    "rows": 12330,
+    "columns": 18,
+    "missing_values_total": 0,
+    "missing_values_by_column": {
+      "Administrative": 0,
+      "Administrative_Duration": 0,
+      "Informational": 0,
+      "Informational_Duration": 0,
+      "ProductRelated": 0,
+      "ProductRelated_Duration": 0,
+      "BounceRates": 0,
+      "ExitRates": 0,
+      "PageValues": 0,
+      "SpecialDay": 0,
+      "Month": 0,
+      "VisitorType": 0,
+      "OperatingSystems": 0,
+      "Browser": 0,
+      "Region": 0,
+      "TrafficType": 0,
+      "Weekend": 0,
+      "Revenue": 0
+    },
+    "duplicate_rows": 125,
+    "purchases": 1908,
+    "no_purchases": 10422,
+    "conversion_rate": 0.15474452554744525,
+    "validation_warnings": [
+      "125 fully duplicated rows (kept by default, see clean())"
+    ],
+    "unchanged_after_eda": true,
+    "checksum_matches_download": true
+  },
+  "visitor_type": {
+    "table": [
+      {
+        "VisitorType": "Returning_Visitor",
+        "sessions": 10551,
+        "purchases": 1470,
+        "no_purchase": 9081,
+        "conversion_rate": 0.1393232868922377,
+        "ci95_low": 0.13284689886796072,
+        "ci95_high": 0.14606222279995704,
+        "share_of_sessions": 0.8557177615571776
+      },
+      {
+        "VisitorType": "New_Visitor",
+        "sessions": 1694,
+        "purchases": 422,
+        "no_purchase": 1272,
+        "conversion_rate": 0.24911452184179456,
+        "ci95_low": 0.22910153283209592,
+        "ci95_high": 0.27026283661202644,
+        "share_of_sessions": 0.13738848337388485
+      },
+      {
+        "VisitorType": "Other",
+        "sessions": 85,
+        "purchases": 16,
+        "no_purchase": 69,
+        "conversion_rate": 0.18823529411764706,
+        "ci95_low": 0.11932042110303412,
+        "ci95_high": 0.2841122050540815,
+        "share_of_sessions": 0.006893755068937551
+      }
+    ],
+    "chi_square": {
+      "chi2": 135.2519228192047,
+      "dof": 2,
+      "p_value": 4.269904152293867e-30,
+      "cramers_v": 0.10473460176130583
+    }
+  },
+  "product_duration": {
+    "median_purchase": 1109.90625,
+    "median_no_purchase": 510.19,
+    "mean_purchase": 1876.2096148889045,
+    "mean_no_purchase": 1069.9878091544426,
+    "mann_whitney_p_value": 5.332268364164621e-128,
+    "rank_biserial": 0.3459989491669573,
+    "zero_duration_sessions": 755,
+    "quintiles": [
+      {
+        "duration_quintile": "0-2 min",
+        "sessions": 2468,
+        "purchases": 102,
+        "no_purchase": 2366,
+        "conversion_rate": 0.041329011345218804,
+        "ci95_low": 0.03416246171191076,
+        "ci95_high": 0.049921243328088574,
+        "share_of_sessions": 0.20016220600162207
+      },
+      {
+        "duration_quintile": "2-7 min",
+        "sessions": 2464,
+        "purchases": 232,
+        "no_purchase": 2232,
+        "conversion_rate": 0.09415584415584416,
+        "ci95_low": 0.0832477716652798,
+        "ci95_high": 0.10632744256240806,
+        "share_of_sessions": 0.19983779399837795
+      },
+      {
+        "duration_quintile": "7-14 min",
+        "sessions": 2467,
+        "purchases": 433,
+        "no_purchase": 2034,
+        "conversion_rate": 0.1755168220510742,
+        "ci95_low": 0.16101309278392456,
+        "ci95_high": 0.19102954726228483,
+        "share_of_sessions": 0.20008110300081103
+      },
+      {
+        "duration_quintile": "14-30 min",
+        "sessions": 2465,
+        "purchases": 518,
+        "no_purchase": 1947,
+        "conversion_rate": 0.2101419878296146,
+        "ci95_low": 0.19451578170196046,
+        "ci95_high": 0.22667025145626243,
+        "share_of_sessions": 0.19991889699918897
+      },
+      {
+        "duration_quintile": "30-1066 min",
+        "sessions": 2466,
+        "purchases": 623,
+        "no_purchase": 1843,
+        "conversion_rate": 0.2526358475263585,
+        "ci95_low": 0.23587926647814755,
+        "ci95_high": 0.2701619306577335,
+        "share_of_sessions": 0.2
+      }
+    ]
+  },
+  "bounce_rate": {
+    "median_purchase": 0.0,
+    "median_no_purchase": 0.004255319,
+    "mean_purchase": 0.005117152640461215,
+    "mean_no_purchase": 0.0253172321978507,
+    "mann_whitney_p_value": 1.832770059117907e-61,
+    "rank_biserial": -0.22689313888898943,
+    "bins": [
+      {
+        "BounceRates_bin": "0%",
+        "sessions": 5518,
+        "purchases": 1036,
+        "no_purchase": 4482,
+        "conversion_rate": 0.18774918448713301,
+        "ci95_low": 0.1776638694791057,
+        "ci95_high": 0.19826897147743314,
+        "share_of_sessions": 0.44752635847526356
+      },
+      {
+        "BounceRates_bin": "0-0.5%",
+        "sessions": 1257,
+        "purchases": 312,
+        "no_purchase": 945,
+        "conversion_rate": 0.24821002386634844,
+        "ci95_low": 0.22512059935349155,
+        "ci95_high": 0.2728337828623237,
+        "share_of_sessions": 0.10194647201946472
+      },
+      {
+        "BounceRates_bin": "0.5-1%",
+        "sessions": 1336,
+        "purchases": 256,
+        "no_purchase": 1080,
+        "conversion_rate": 0.19161676646706588,
+        "ci95_low": 0.1714080467294133,
+        "ci95_high": 0.2135938818567718,
+        "share_of_sessions": 0.10835360908353608
+      },
+      {
+        "BounceRates_bin": "1-2%",
+        "sessions": 1522,
+        "purchases": 197,
+        "no_purchase": 1325,
+        "conversion_rate": 0.12943495400788435,
+        "ci95_low": 0.11349878181827683,
+        "ci95_high": 0.14723706389467262,
+        "share_of_sessions": 0.12343876723438767
+      },
+      {
+        "BounceRates_bin": "2-5%",
+        "sessions": 1381,
+        "purchases": 90,
+        "no_purchase": 1291,
+        "conversion_rate": 0.06517016654598118,
+        "ci95_low": 0.053320458122856774,
+        "ci95_high": 0.07943234190856921,
+        "share_of_sessions": 0.11200324412003244
+      },
+      {
+        "BounceRates_bin": "5-10%",
+        "sessions": 500,
+        "purchases": 13,
+        "no_purchase": 487,
+        "conversion_rate": 0.026,
+        "ci95_low": 0.0152562373229252,
+        "ci95_high": 0.04397190104437119,
+        "share_of_sessions": 0.040551500405515
+      },
+      {
+        "BounceRates_bin": "10-20%",
+        "sessions": 816,
+        "purchases": 4,
+        "no_purchase": 812,
+        "conversion_rate": 0.004901960784313725,
+        "ci95_low": 0.0019078478365190587,
+        "ci95_high": 0.01253591788603027,
+        "share_of_sessions": 0.06618004866180048
+      }
+    ]
+  },
+  "exit_rate": {
+    "median_purchase": 0.016,
+    "median_no_purchase": 0.028571429,
+    "mean_purchase": 0.019555168256813416,
+    "mean_no_purchase": 0.04737827052648244,
+    "mann_whitney_p_value": 1.1568241971827584e-175,
+    "rank_biserial": -0.40620399839558874,
+    "bins": [
+      {
+        "ExitRates_bin": "0%",
+        "sessions": 76,
+        "purchases": 34,
+        "no_purchase": 42,
+        "conversion_rate": 0.4473684210526316,
+        "ci95_low": 0.34080475999833526,
+        "ci95_high": 0.5589968471838855,
+        "share_of_sessions": 0.006163828061638281
+      },
+      {
+        "ExitRates_bin": "0-0.5%",
+        "sessions": 618,
+        "purchases": 171,
+        "no_purchase": 447,
+        "conversion_rate": 0.2766990291262136,
+        "ci95_low": 0.24288900071608688,
+        "ci95_high": 0.31326806564936693,
+        "share_of_sessions": 0.05012165450121654
+      },
+      {
+        "ExitRates_bin": "0.5-1%",
+        "sessions": 1220,
+        "purchases": 316,
+        "no_purchase": 904,
+        "conversion_rate": 0.25901639344262295,
+        "ci95_low": 0.23521627286423524,
+        "ci95_high": 0.2843293938298859,
+        "share_of_sessions": 0.0989456609894566
+      },
+      {
+        "ExitRates_bin": "1-2%",
+        "sessions": 2928,
+        "purchases": 680,
+        "no_purchase": 2248,
+        "conversion_rate": 0.23224043715846995,
+        "ci95_low": 0.21730218981916388,
+        "ci95_high": 0.24788037666055324,
+        "share_of_sessions": 0.23746958637469587
+      },
+      {
+        "ExitRates_bin": "2-5%",
+        "sessions": 4669,
+        "purchases": 627,
+        "no_purchase": 4042,
+        "conversion_rate": 0.13428999785821374,
+        "ci95_low": 0.12480975138600682,
+        "ci95_high": 0.14437155362548773,
+        "share_of_sessions": 0.3786699107866991
+      },
+      {
+        "ExitRates_bin": "5-10%",
+        "sessions": 1707,
+        "purchases": 74,
+        "no_purchase": 1633,
+        "conversion_rate": 0.043350908025776215,
+        "ci95_low": 0.03467197996551191,
+        "ci95_high": 0.05408059654420121,
+        "share_of_sessions": 0.13844282238442823
+      },
+      {
+        "ExitRates_bin": "10-20%",
+        "sessions": 1112,
+        "purchases": 6,
+        "no_purchase": 1106,
+        "conversion_rate": 0.00539568345323741,
+        "ci95_low": 0.002475132575657328,
+        "ci95_high": 0.011721864560853803,
+        "share_of_sessions": 0.09018653690186537
+      }
+    ]
+  },
+  "monthly": {
+    "table": [
+      {
+        "Month": "Feb",
+        "sessions": 184,
+        "purchases": 3,
+        "no_purchase": 181,
+        "conversion_rate": 0.016304347826086956,
+        "ci95_low": 0.0055600783671788424,
+        "ci95_high": 0.046833001759906956,
+        "share_of_sessions": 0.01492295214922952
+      },
+      {
+        "Month": "Mar",
+        "sessions": 1907,
+        "purchases": 192,
+        "no_purchase": 1715,
+        "conversion_rate": 0.10068169900367069,
+        "ci95_low": 0.08796865409791457,
+        "ci95_high": 0.11500034134367515,
+        "share_of_sessions": 0.15466342254663423
+      },
+      {
+        "Month": "May",
+        "sessions": 3364,
+        "purchases": 365,
+        "no_purchase": 2999,
+        "conversion_rate": 0.10850178359096314,
+        "ci95_low": 0.09843476411555538,
+        "ci95_high": 0.11946194456575551,
+        "share_of_sessions": 0.27283049472830495
+      },
+      {
+        "Month": "Jun",
+        "sessions": 288,
+        "purchases": 29,
+        "no_purchase": 259,
+        "conversion_rate": 0.10069444444444445,
+        "ci95_low": 0.07102740250436226,
+        "ci95_high": 0.14087384803702735,
+        "share_of_sessions": 0.02335766423357664
+      },
+      {
+        "Month": "Jul",
+        "sessions": 432,
+        "purchases": 66,
+        "no_purchase": 366,
+        "conversion_rate": 0.1527777777777778,
+        "ci95_low": 0.12192294259987174,
+        "ci95_high": 0.18975359309566536,
+        "share_of_sessions": 0.035036496350364967
+      },
+      {
+        "Month": "Aug",
+        "sessions": 433,
+        "purchases": 76,
+        "no_purchase": 357,
+        "conversion_rate": 0.17551963048498845,
+        "ci95_low": 0.1425855681602793,
+        "ci95_high": 0.2141606757871836,
+        "share_of_sessions": 0.03511759935117599
+      },
+      {
+        "Month": "Sep",
+        "sessions": 448,
+        "purchases": 86,
+        "no_purchase": 362,
+        "conversion_rate": 0.19196428571428573,
+        "ci95_low": 0.15817371959366408,
+        "ci95_high": 0.23099274936359884,
+        "share_of_sessions": 0.036334144363341446
+      },
+      {
+        "Month": "Oct",
+        "sessions": 549,
+        "purchases": 115,
+        "no_purchase": 434,
+        "conversion_rate": 0.20947176684881602,
+        "ci95_low": 0.17750891075771916,
+        "ci95_high": 0.2454722831321762,
+        "share_of_sessions": 0.04452554744525548
+      },
+      {
+        "Month": "Nov",
+        "sessions": 2998,
+        "purchases": 760,
+        "no_purchase": 2238,
+        "conversion_rate": 0.25350233488992663,
+        "ci95_low": 0.23825252173176456,
+        "ci95_high": 0.2693830577072037,
+        "share_of_sessions": 0.24314679643146797
+      },
+      {
+        "Month": "Dec",
+        "sessions": 1727,
+        "purchases": 216,
+        "no_purchase": 1511,
+        "conversion_rate": 0.1250723798494499,
+        "ci95_low": 0.11029778327972174,
+        "ci95_high": 0.1415112788551379,
+        "share_of_sessions": 0.14006488240064882
+      }
+    ],
+    "months_absent": [
+      "Jan",
+      "Apr"
+    ],
+    "chi_square": {
+      "chi2": 384.93476153599426,
+      "dof": 9,
+      "p_value": 2.2387855164805443e-77,
+      "cramers_v": 0.17669002313952925
+    }
+  },
+  "spearman_with_revenue": {
+    "PageValues": 0.6263627593256479,
+    "ExitRates": -0.2544879568756732,
+    "ProductRelated_Duration": 0.21676388403816968,
+    "ProductRelated": 0.19854471756883663,
+    "Administrative": 0.16794514030674562,
+    "Administrative_Duration": 0.16395984701949207,
+    "BounceRates": -0.14897743520082848,
+    "Informational": 0.11387576923343329,
+    "Informational_Duration": 0.11212039084003904,
+    "SpecialDay": -0.0868784739297377
+  },
+  "page_values": {
+    "median_purchase": 16.758133555,
+    "median_no_purchase": 0.0,
+    "mean_purchase": 27.264518194696016,
+    "mean_no_purchase": 1.9759977673701787,
+    "mann_whitney_p_value": 0.0,
+    "rank_biserial": 0.7265883892604219,
+    "share_nonzero_purchase": 0.8060796645702306,
+    "share_nonzero_no_purchase": 0.11437344079831127,
+    "conversion_when_zero": 0.03854166666666667,
+    "conversion_when_nonzero": 0.5633699633699634,
+    "sessions_zero": 9600,
+    "sessions_nonzero": 2730
+  },
+  "weekend": [
+    {
+      "Weekend": "False",
+      "sessions": 9462,
+      "purchases": 1409,
+      "no_purchase": 8053,
+      "conversion_rate": 0.1489114352145424,
+      "ci95_low": 0.14188071025506305,
+      "ci95_high": 0.15622713046773123,
+      "share_of_sessions": 0.767396593673966
+    },
+    {
+      "Weekend": "True",
+      "sessions": 2868,
+      "purchases": 499,
+      "no_purchase": 2369,
+      "conversion_rate": 0.17398884239888424,
+      "ci95_low": 0.16055277705879792,
+      "ci95_high": 0.1882971037981407,
+      "share_of_sessions": 0.23260340632603407
+    }
+  ],
+  "special_day": [
+    {
+      "SpecialDay": 0.0,
+      "sessions": 11079,
+      "purchases": 1831,
+      "no_purchase": 9248,
+      "conversion_rate": 0.16526762343171766,
+      "ci95_low": 0.15846758396425353,
+      "ci95_high": 0.17229971672512917,
+      "share_of_sessions": 0.8985401459854014
+    },
+    {
+      "SpecialDay": 0.2,
+      "sessions": 178,
+      "purchases": 14,
+      "no_purchase": 164,
+      "conversion_rate": 0.07865168539325842,
+      "ci95_low": 0.04742645453333765,
+      "ci95_high": 0.1276797917821369,
+      "share_of_sessions": 0.014436334144363341
+    },
+    {
+      "SpecialDay": 0.4,
+      "sessions": 243,
+      "purchases": 13,
+      "no_purchase": 230,
+      "conversion_rate": 0.053497942386831275,
+      "ci95_low": 0.03152740364763877,
+      "ci95_high": 0.08936631929047213,
+      "share_of_sessions": 0.01970802919708029
+    },
+    {
+      "SpecialDay": 0.6,
+      "sessions": 351,
+      "purchases": 29,
+      "no_purchase": 322,
+      "conversion_rate": 0.08262108262108261,
+      "ci95_low": 0.05813987837566861,
+      "ci95_high": 0.11613957476624032,
+      "share_of_sessions": 0.02846715328467153
+    },
+    {
+      "SpecialDay": 0.8,
+      "sessions": 325,
+      "purchases": 11,
+      "no_purchase": 314,
+      "conversion_rate": 0.033846153846153845,
+      "ci95_low": 0.019002181350447636,
+      "ci95_high": 0.05958155014824351,
+      "share_of_sessions": 0.026358475263584754
+    },
+    {
+      "SpecialDay": 1.0,
+      "sessions": 154,
+      "purchases": 10,
+      "no_purchase": 144,
+      "conversion_rate": 0.06493506493506493,
+      "ci95_low": 0.035650162878397375,
+      "ci95_high": 0.11539746968488124,
+      "share_of_sessions": 0.012489862124898622
+    }
+  ],
+  "data_quality": {
+    "sessions_with_zero_pages": 6,
+    "product_pages_gt0_but_zero_duration": 717,
+    "duplicate_rows": 125,
+    "duplicate_rows_purchase_rate": 0.0,
+    "duplicate_rows_all_zero_duration": true,
+    "bounce_rate_at_max_0.2": 700
+  }
+}

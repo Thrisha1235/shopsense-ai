@@ -1,0 +1,424 @@
+{
+  "with_page_values": {
+    "status": "validated",
+    "method": "sigmoid",
+    "criteria": {
+      "max_ece": 0.05,
+      "max_abs_calibration_in_the_large": 0.02,
+      "min_brier_skill_score": 0.0,
+      "must_beat_raw_brier": true
+    },
+    "failures": [],
+    "model_file": "purchase_model_with_page_values.joblib",
+    "model_sha256": "07a5d95e4b6c5e0eaa186aca03133e29ee6d65469be4d1d1afce7b2afc851214",
+    "decision_threshold_model_score": 0.31438115665325556,
+    "validation_on_training_split": {
+      "description": "OOF scores (5-fold) -> calibrators validated by a second 5-fold CV",
+      "n": 9864,
+      "raw_scores": {
+        "brier": 0.07219174233930797,
+        "brier_base_rate": 0.13077067635134615,
+        "brier_skill_score": 0.4479516023504544,
+        "log_loss": 0.24260694813468123,
+        "ece": 0.036530584060776715,
+        "calibration_in_the_large": 0.00015100554959285306,
+        "mean_predicted": 0.15485497959663258,
+        "observed_rate": 0.15470397404703973,
+        "roc_auc": 0.9276474112897825,
+        "pr_auc": 0.749110077751166
+      },
+      "sigmoid": {
+        "brier": 0.06912742426401189,
+        "brier_base_rate": 0.13077067635134615,
+        "brier_skill_score": 0.47138436388992266,
+        "log_loss": 0.22942297647290613,
+        "ece": 0.008464165525819786,
+        "calibration_in_the_large": 9.41391618058951e-06,
+        "mean_predicted": 0.15471338796322032,
+        "observed_rate": 0.15470397404703973,
+        "roc_auc": 0.9275835938165584,
+        "pr_auc": 0.7487278926999507,
+        "fold_brier": [
+          0.06947123154842891,
+          0.0709877246800208,
+          0.06746139097462003,
+          0.06549654065333048,
+          0.07222180182532235
+        ],
+        "passes": true,
+        "failures": []
+      },
+      "isotonic": {
+        "brier": 0.0692078817539914,
+        "brier_base_rate": 0.13077067635134615,
+        "brier_skill_score": 0.4707691075325774,
+        "log_loss": 0.23509882237261273,
+        "ece": 0.003849174322113275,
+        "calibration_in_the_large": 0.00010889928099372392,
+        "mean_predicted": 0.15481287332803345,
+        "observed_rate": 0.15470397404703973,
+        "roc_auc": 0.9252739435771801,
+        "pr_auc": 0.7394045583823161,
+        "fold_brier": [
+          0.0691507523414551,
+          0.07126616593303241,
+          0.06709075070514892,
+          0.06598821784774624,
+          0.07254521344368417
+        ],
+        "passes": true,
+        "failures": []
+      }
+    },
+    "reliability_training_cv": {
+      "raw": [
+        {
+          "mean_predicted": 0.003007877806867519,
+          "observed_rate": 0.0,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.012190495857860683,
+          "observed_rate": 0.002028397565922921,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.026024426959898483,
+          "observed_rate": 0.008113590263691683,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.04187795124583078,
+          "observed_rate": 0.014184397163120567,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.05948111939918004,
+          "observed_rate": 0.02332657200811359,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.0813449741021553,
+          "observed_rate": 0.0436105476673428,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.11402879457262857,
+          "observed_rate": 0.09017223910840932,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.1922215257094501,
+          "observed_rate": 0.16531440162271804,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.3886743784236355,
+          "observed_rate": 0.40973630831643004,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.6295268304530258,
+          "observed_rate": 0.790273556231003,
+          "n": 987
+        }
+      ],
+      "calibrated": [
+        {
+          "mean_predicted": 0.00031383945994087277,
+          "observed_rate": 0.0,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.002309522075979457,
+          "observed_rate": 0.002028397565922921,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.0071639702506290474,
+          "observed_rate": 0.008113590263691683,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.014779183364474686,
+          "observed_rate": 0.013171225937183385,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.02537659987739034,
+          "observed_rate": 0.02535496957403651,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.0413535668240947,
+          "observed_rate": 0.04158215010141988,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.07029622366394983,
+          "observed_rate": 0.0911854103343465,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.16146526124192193,
+          "observed_rate": 0.16531440162271804,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.4509090913126013,
+          "observed_rate": 0.4107505070993915,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.7729237620716598,
+          "observed_rate": 0.7892603850050659,
+          "n": 987
+        }
+      ]
+    },
+    "created_at": "2026-11-14T07:06:08+00:00",
+    "sklearn_version": "1.9.1",
+    "calibrator_file": "calibrator_with_page_values.joblib",
+    "decision_threshold_probability": 0.33556171106093957,
+    "heldout_test_check": {
+      "note": "computed after the calibration decision; not used for selection or acceptance",
+      "n": 2466,
+      "raw_scores": {
+        "brier": 0.0758153377255407,
+        "brier_base_rate": 0.13091067718045712,
+        "brier_skill_score": 0.42086207665833764,
+        "log_loss": 0.25311702385817036,
+        "ece": 0.036467558315438624,
+        "calibration_in_the_large": -0.001643306934916433,
+        "mean_predicted": 0.15326342461415088,
+        "observed_rate": 0.1549067315490673,
+        "roc_auc": 0.917579463576891,
+        "pr_auc": 0.7276003645406677
+      },
+      "calibrated": {
+        "brier": 0.07321363748463146,
+        "brier_base_rate": 0.13091067718045712,
+        "brier_skill_score": 0.4407359349023283,
+        "log_loss": 0.24240907237737633,
+        "ece": 0.016669661892631034,
+        "calibration_in_the_large": -0.0031948958555880758,
+        "mean_predicted": 0.15171183569347924,
+        "observed_rate": 0.1549067315490673,
+        "roc_auc": 0.917579463576891,
+        "pr_auc": 0.7276003645406677
+      },
+      "probability_threshold_reproduces_decisions": true
+    }
+  },
+  "without_page_values": {
+    "status": "validated",
+    "method": "sigmoid",
+    "criteria": {
+      "max_ece": 0.05,
+      "max_abs_calibration_in_the_large": 0.02,
+      "min_brier_skill_score": 0.0,
+      "must_beat_raw_brier": true
+    },
+    "failures": [],
+    "model_file": "purchase_model_without_page_values.joblib",
+    "model_sha256": "75f670c49a9435b8ea6ac9e34bbea377d9425c8b19fd83a61104a6d1e811e2d2",
+    "decision_threshold_model_score": 0.45030941527799795,
+    "validation_on_training_split": {
+      "description": "OOF scores (5-fold) -> calibrators validated by a second 5-fold CV",
+      "n": 9864,
+      "raw_scores": {
+        "brier": 0.14512259889181783,
+        "brier_base_rate": 0.13077067635134615,
+        "brier_skill_score": -0.10974878268513244,
+        "log_loss": 0.44240410139772285,
+        "ece": 0.1623661394204444,
+        "calibration_in_the_large": 0.16236613942044437,
+        "mean_predicted": 0.3170701134674841,
+        "observed_rate": 0.15470397404703973,
+        "roc_auc": 0.7838620857247856,
+        "pr_auc": 0.3735283584385694
+      },
+      "sigmoid": {
+        "brier": 0.1127551535737278,
+        "brier_base_rate": 0.13077067635134615,
+        "brier_skill_score": 0.13776423950898142,
+        "log_loss": 0.35838699893008646,
+        "ece": 0.005760477428861878,
+        "calibration_in_the_large": -6.6366542929297e-05,
+        "mean_predicted": 0.15463760750411043,
+        "observed_rate": 0.15470397404703973,
+        "roc_auc": 0.7838207458344952,
+        "pr_auc": 0.37303081025894985,
+        "fold_brier": [
+          0.11015159260702938,
+          0.11438314286113989,
+          0.11185743366180252,
+          0.11349766078342223,
+          0.11388651137531669
+        ],
+        "passes": true,
+        "failures": []
+      },
+      "isotonic": {
+        "brier": 0.11314396509031056,
+        "brier_base_rate": 0.13077067635134615,
+        "brier_skill_score": 0.13479100783785258,
+        "log_loss": 0.36882994172011446,
+        "ece": 0.004523806772543336,
+        "calibration_in_the_large": -0.00017244504809763028,
+        "mean_predicted": 0.1545315289989421,
+        "observed_rate": 0.15470397404703973,
+        "roc_auc": 0.780721904514599,
+        "pr_auc": 0.36001982309458214,
+        "fold_brier": [
+          0.11068191133339973,
+          0.11460300736131947,
+          0.11196480560703202,
+          0.11368246684806987,
+          0.11478846780538865
+        ],
+        "passes": true,
+        "failures": []
+      }
+    },
+    "reliability_training_cv": {
+      "raw": [
+        {
+          "mean_predicted": 0.015751667874971287,
+          "observed_rate": 0.002026342451874367,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.06754252733177028,
+          "observed_rate": 0.010141987829614604,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.14066573854138684,
+          "observed_rate": 0.04462474645030426,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.21471537607423086,
+          "observed_rate": 0.07193515704154002,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.2843760263950793,
+          "observed_rate": 0.10649087221095335,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.3454839010561698,
+          "observed_rate": 0.14300202839756593,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.407374158897614,
+          "observed_rate": 0.19756838905775076,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.4693278698448553,
+          "observed_rate": 0.2210953346855984,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.5475860257847572,
+          "observed_rate": 0.30831643002028397,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.677829779457744,
+          "observed_rate": 0.44174265450861194,
+          "n": 987
+        }
+      ],
+      "calibrated": [
+        {
+          "mean_predicted": 0.0031201118974868163,
+          "observed_rate": 0.0010131712259371835,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.016867995315503714,
+          "observed_rate": 0.013184584178498986,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.04159515479052331,
+          "observed_rate": 0.0436105476673428,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.07229228357279852,
+          "observed_rate": 0.07092198581560284,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.10668658981671159,
+          "observed_rate": 0.10243407707910751,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.14185420853259836,
+          "observed_rate": 0.1460446247464503,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.1828645904134834,
+          "observed_rate": 0.19655521783181357,
+          "n": 987
+        },
+        {
+          "mean_predicted": 0.23001501863619372,
+          "observed_rate": 0.22413793103448276,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.3000949113148273,
+          "observed_rate": 0.3093306288032454,
+          "n": 986
+        },
+        {
+          "mean_predicted": 0.45089330419918594,
+          "observed_rate": 0.4397163120567376,
+          "n": 987
+        }
+      ]
+    },
+    "created_at": "2026-11-14T07:06:21+00:00",
+    "sklearn_version": "1.9.1",
+    "calibrator_file": "calibrator_without_page_values.joblib",
+    "decision_threshold_probability": 0.21456272144861338,
+    "heldout_test_check": {
+      "note": "computed after the calibration decision; not used for selection or acceptance",
+      "n": 2466,
+      "raw_scores": {
+        "brier": 0.14970903367387617,
+        "brier_base_rate": 0.13091067718045712,
+        "brier_skill_score": -0.1435968165339636,
+        "log_loss": 0.45391452492834505,
+        "ece": 0.1662821276130213,
+        "calibration_in_the_large": 0.1662821276130213,
+        "mean_predicted": 0.3211888591620886,
+        "observed_rate": 0.1549067315490673,
+        "roc_auc": 0.7657595642692769,
+        "pr_auc": 0.36152002202102324
+      },
+      "calibrated": {
+        "brier": 0.11505381829649727,
+        "brier_base_rate": 0.13091067718045712,
+        "brier_skill_score": 0.12112731539919819,
+        "log_loss": 0.36735667261501503,
+        "ece": 0.017862768537113112,
+        "calibration_in_the_large": 0.002832373937581123,
+        "mean_predicted": 0.15773910548664843,
+        "observed_rate": 0.1549067315490673,
+        "roc_auc": 0.7657595642692769,
+        "pr_auc": 0.36152002202102324
+      },
+      "probability_threshold_reproduces_decisions": true
+    }
+  }
+}

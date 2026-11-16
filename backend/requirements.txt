@@ -1,0 +1,19 @@
+# Verified on Python 3.13.2 (Windows)
+
+# --- API ---
+fastapi==0.162.7
+uvicorn[standard]==0.54.0
+pydantic==2.14.3
+pydantic-settings==2.16.3
+
+# --- Data science / ML ---
+pandas==3.1.1
+numpy==2.5.4
+scikit-learn==1.9.1
+shap==0.54.1
+scipy==1.18.1          # statistical tests in EDA (also a scikit-learn dependency)
+certifi==2026.10.23    # current CA roots for the verified dataset download
+
+# --- Visualisation / EDA ---
+matplotlib==3.11.2
+seaborn==0.13.2
