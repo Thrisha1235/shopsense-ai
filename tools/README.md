@@ -114,6 +114,24 @@ $env:ENVIRONMENT = "production"; .\.venv\Scripts\python.exe -m uvicorn app.main:
 # -> concurrency [200, 200, 429]; 429 at request #11 with Retry-After; /api/predict 200 (0.2256); "0 failures"
 ```
 
+## `verify_deployment.py`: check the live Render + Vercel deployment
+
+It runs read-only checks against the **deployed** addresses and uses only Python's standard
+library. It checks:
+- HTTPS, HSTS and docs hidden;
+- every endpoint the six pages use (prediction 0.2256, SHAP additivity, 422 on bad input);
+- CORS for the frontend origin and refusal of other origins;
+- 7 SSRF targets refused with 400;
+- one real analysis of example.com;
+- all six frontend pages.
+
+It uses 8 of the 10 website analyses allowed per 10 minutes.
+
+```powershell
+backend\.venv\Scripts\python.exe tools\verify_deployment.py --api https://<service>.onrender.com --web https://<app>.vercel.app
+# -> "28/28 deployment checks passed" (verified against a local production simulation)
+```
+
 ---
 
 Run `verify_predictions.py` against a quiet server. If files change during a run, the dev server reloads pages and

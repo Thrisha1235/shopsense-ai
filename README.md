@@ -217,13 +217,14 @@ The API docs are at http://localhost:8000/docs (development only).
 
 | Command | What it checks | Result |
 |---|---|---|
-| `cd backend; pytest` | Preprocessing, training, calibration, API, dashboard, SHAP, security, and 82 Website Intelligence tests (SSRF cases, redirects, DNS pinning, size/gzip/timeout limits, robots.txt, crawl limits, checks, rate limits) | **212 passed** |
+| `cd backend; pytest` | Preprocessing, training, calibration, API, dashboard, SHAP, security, 82 Website Intelligence tests (SSRF cases, redirects, DNS pinning, size/gzip/timeout limits, robots.txt, crawl limits, checks, rate limits) and 16 deployment tests (verified model download, API rate limit, HSTS, production CORS) | **228 passed** |
 | `cd frontend; npm test` | Formatting, form validation, API payload conversion, report export escaping (Node's built-in test runner) | **16 passed** |
 | `npm run typecheck`, `npm run lint`, `npm run build` | TypeScript, ESLint, production build | all pass |
 | `node tools/verify_ui.mjs …` | 6 pages × 4 widths, navigation, form, SHAP flow, user journey, **axe-core WCAG 2.1 AA** | **97/97** in Edge; 0 axe violations |
 | `node tools/verify_firefox.mjs …` | Page loads, prediction, SHAP, Website Intelligence flow, mobile layout in Firefox (WebDriver BiDi) | **15/15** |
 | `node tools/verify_website_ui.mjs …` | URL input → real analyses (example.com, python.org) → UI matches the data → filters → HTML/JSON downloads → axe → mobile | **18/18** in Edge and in Chrome |
 | `python ..\tools\verify_rate_limits.py` | **Default** production limits: concurrency `[200, 200, 429]`, 429 at request #11, prediction unaffected | **0 failures** |
+| `python tools\verify_deployment.py --api … --web …` | Live deployment: HTTPS/HSTS, all endpoints, CORS, SSRF refusals, a real analysis, all six pages | **28/28** on a local Render/Vercel simulation |
 | `python ..\tools\verify_dashboard_data.py` | Dashboard numbers vs the raw CSV (independent pandas) and the reports | **148 checks, 0 failures** |
 | `python ..\tools\verify_predictions.py` | Live API on all 2,466 test sessions vs saved model + calibrator; metrics reproduce Phase 3 exactly; SHAP additivity | **0 failures** |
 
@@ -249,7 +250,10 @@ Full reference with request and response examples: [backend/API.md](backend/API.
 
 ## Deployment
 
-Prepared but **not deployed**. [DEPLOYMENT.md](DEPLOYMENT.md) covers:
+Prepared but **not deployed**. The planned setup is the backend on **Render** (`render.yaml`) and
+the frontend on **Vercel** (root directory `frontend`). The model files come from a GitHub Release
+and are checksum-verified at build time. [DEPLOYMENT.md §7](DEPLOYMENT.md#7-render--vercel-step-by-step)
+has the step-by-step guide. DEPLOYMENT.md also covers:
 - hosting options (Vercel or any Node host for the frontend; container platforms or a VM for the API);
 - model-artifact storage with checksum verification;
 - environment variables and measured resource needs (~260 MB RAM);
@@ -269,8 +273,14 @@ Prepared but **not deployed**. [DEPLOYMENT.md](DEPLOYMENT.md) covers:
   wildcards apply in development only.
 - **Production defaults:** API docs off. Security headers on both the API and the frontend. Error
   responses never include server paths.
-- **Abuse protection:** explanation concurrency is capped. Website analysis is limited per IP and
-  per process. Both return HTTP 429. Add proxy-level rate limiting when deploying.
+- **Abuse protection (production):**
+  - Each client IP gets 120 requests per minute on the model and dashboard endpoints.
+  - Explanation concurrency is capped.
+  - Website analysis has its own per-IP and per-process limits.
+  - All of these return HTTP 429.
+  - Client IPs are taken from the proxy's `X-Forwarded-For` only for trusted proxy ranges, so they
+    cannot be spoofed.
+- **HTTPS:** HSTS on both the API and the frontend in production.
 - **Outbound requests (Website Intelligence):**
   - SSRF-safe: only public IPs, with the connection pinned to the checked IP and every redirect
     re-validated;

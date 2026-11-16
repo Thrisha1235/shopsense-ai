@@ -14,6 +14,11 @@ docs are **development only**; with `ENVIRONMENT=production`, `/docs`, `/redoc` 
   contain file paths.
 - **429 on `/api/explain`:** returned when `EXPLAIN_MAX_CONCURRENCY` (default 4) explanations are
   already running in this process. Retry after the `Retry-After` header (1 s).
+- **429 rate limit (production):** each client IP may make `API_RATE_LIMIT_PER_MINUTE` (default
+  120) requests per minute to `/api/predict`, `/api/explain*`, `/api/model-info`, `/api/analytics`
+  and `/api/model-performance`. The response includes `Retry-After`. `/health` is exempt, and the
+  limit is off in development.
+- **HSTS (production):** `Strict-Transport-Security: max-age=31536000` on every response.
 - **Model integrity:** model and calibrator files are verified against the SHA-256 checksums in
   `model_manifest.json` before loading. A mismatched model returns 503. A mismatched calibrator
   falls back to score-only responses.

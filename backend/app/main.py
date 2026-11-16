@@ -9,13 +9,14 @@ import logging
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from app import __version__
 from app.api.dashboard import router as dashboard_router
 from app.api.explain import router as explain_router
+from app.api.limits import api_rate_limit
 from app.api.routes import router as prediction_router
 from app.api.website import router as website_router
 from app.config import Settings, get_settings
@@ -23,6 +24,13 @@ from app.services.explanation import ExplanationUnavailableError, load_explanati
 from app.services.prediction import ModelUnavailableError, load_service
 
 log = logging.getLogger("shopsense")
+# Uvicorn only configures its own loggers: give the app's loggers an INFO handler so warnings,
+# 503 reasons and website-analysis lines reach the platform log (Render "Logs" tab).
+if not log.handlers:
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter("%(levelname)s:     %(name)s: %(message)s"))
+    log.addHandler(_handler)
+    log.setLevel(logging.INFO)
 
 SECURITY_HEADERS = {
     "X-Content-Type-Options": "nosniff",
@@ -83,10 +91,15 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         max_age=600,
     )
 
+    headers = dict(SECURITY_HEADERS)
+    if not settings.is_development:
+        # Deployed behind HTTPS (the platform terminates TLS): browsers must never fall back to http.
+        headers["Strict-Transport-Security"] = "max-age=31536000"
+
     @app.middleware("http")
     async def security_headers(request: Request, call_next):
         response = await call_next(request)
-        for k, v in SECURITY_HEADERS.items():
+        for k, v in headers.items():
             response.headers.setdefault(k, v)
         return response
 
@@ -101,11 +114,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             timestamp=datetime.now(timezone.utc),
         )
 
-    app.include_router(prediction_router)
-    app.include_router(dashboard_router)
+    # Per-client request limit on the model + dashboard endpoints (off in development).
+    limited = [Depends(api_rate_limit)]
+    app.include_router(prediction_router, dependencies=limited)
+    app.include_router(dashboard_router, dependencies=limited)
     # SHAP explainer loads lazily on the first /api/explain request (keeps startup fast).
-    app.include_router(explain_router)
-    # Website Intelligence: separate module, does not touch the prediction models.
+    app.include_router(explain_router, dependencies=limited)
+    # Website Intelligence: separate module with its own, stricter limits; no model access.
     app.include_router(website_router)
     return app
 

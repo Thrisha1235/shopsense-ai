@@ -10,8 +10,9 @@ import type {
 } from "./types";
 import type { WebsiteAnalysis } from "./websiteTypes";
 
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+// Set at build time (Vercel: Project → Settings → Environment Variables). A trailing slash is
+// tolerated so "https://api.example.com/" does not produce "//health" requests.
+export const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/+$/, "");
 
 export interface HealthResponse {
   status: string;

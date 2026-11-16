@@ -10,11 +10,10 @@ from __future__ import annotations
 
 import logging
 import threading
-import time
-from collections import defaultdict, deque
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
+from app.api.limits import RateLimiter, client_ip, masked_ip, too_many
 from app.config import get_settings
 from app.website.analyzer import analyze
 from app.website.pagespeed import run_pagespeed
@@ -23,30 +22,6 @@ from app.website.schemas import AnalyzeWebsiteRequest, AnalyzeWebsiteResponse
 
 router = APIRouter(prefix="/api", tags=["website intelligence"])
 log = logging.getLogger("shopsense.website")
-
-
-class RateLimiter:
-    """In-process sliding window per client key (use a shared store when running many replicas)."""
-
-    def __init__(self, limit: int, window_s: float):
-        self.limit, self.window = limit, window_s
-        self._hits: dict[str, deque] = defaultdict(deque)
-        self._lock = threading.Lock()
-
-    def check(self, key: str) -> float | None:
-        """None if allowed (and recorded), else seconds until the next slot frees up."""
-        now = time.monotonic()
-        with self._lock:
-            q = self._hits[key]
-            while q and now - q[0] > self.window:
-                q.popleft()
-            if len(q) >= self.limit:
-                return max(1.0, self.window - (now - q[0]))
-            q.append(now)
-            if len(self._hits) > 10_000:            # bound memory: drop idle clients
-                for k in [k for k, v in self._hits.items() if not v]:
-                    del self._hits[k]
-            return None
 
 
 _settings = get_settings()
@@ -59,12 +34,9 @@ def get_fetcher() -> SafeFetcher:
 
 
 def rate_limit(request: Request) -> None:
-    client = request.client.host if request.client else "unknown"
-    wait = limiter.check(client)
+    wait = limiter.check(client_ip(request))
     if wait is not None:
-        raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS,
-                            detail=f"Rate limit: at most {limiter.limit} analyses per {int(limiter.window)} s. Try again later.",
-                            headers={"Retry-After": str(int(wait) + 1)})
+        raise too_many(limiter, wait, "analyses")
 
 
 def concurrency_slot():
@@ -86,7 +58,8 @@ def concurrency_slot():
                429: {"description": "Rate limit or concurrency limit"}, 503: {"description": "Feature disabled"}},
     dependencies=[Depends(rate_limit), Depends(concurrency_slot)],
 )
-def analyze_website(body: AnalyzeWebsiteRequest, fetcher: SafeFetcher = Depends(get_fetcher)) -> AnalyzeWebsiteResponse:
+def analyze_website(body: AnalyzeWebsiteRequest, request: Request,
+                    fetcher: SafeFetcher = Depends(get_fetcher)) -> AnalyzeWebsiteResponse:
     settings = get_settings()
     if not settings.website_analysis_enabled:
         raise HTTPException(503, detail="Website analysis is disabled on this server.")
@@ -98,5 +71,8 @@ def analyze_website(body: AnalyzeWebsiteRequest, fetcher: SafeFetcher = Depends(
         report = analyze(body.url, fetcher=fetcher, pagespeed=psi)
     except UnsafeURLError as exc:
         raise HTTPException(400, detail=str(exc)) from exc
-    log.info("website analysis: %s pages, %s issues", report["summary"]["pages_analyzed"], len(report["issues"]))
+    # client = coarse network of the caller: after deploying, check it shows your public network,
+    # not the proxy's private address (that would mean FORWARDED_ALLOW_IPS is wrong).
+    log.info("website analysis: %s pages, %s issues, client=%s", report["summary"]["pages_analyzed"],
+             len(report["issues"]), masked_ip(client_ip(request)))
     return AnalyzeWebsiteResponse(**report)

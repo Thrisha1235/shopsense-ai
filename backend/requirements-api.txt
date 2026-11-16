@@ -10,3 +10,4 @@ numpy==2.5.4
 scikit-learn==1.9.1   # must match the version the models were saved with (checked at load)
 scipy==1.18.1
 shap==0.54.1
+certifi==2026.10.23   # CA roots for Website Intelligence TLS verification (same on every host)

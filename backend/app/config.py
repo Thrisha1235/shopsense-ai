@@ -38,6 +38,10 @@ class Settings(BaseSettings):
     # Build the SHAP explainer at startup (avoids a ~5-7 s first request). None = production only.
     preload_explainer: bool | None = None
 
+    # Per-client requests per minute for the model and dashboard endpoints (/api/predict,
+    # /api/explain, /api/analytics, ...). None = off in development, 120 otherwise; 0 = off.
+    api_rate_limit_per_minute: int | None = Field(default=None, ge=0, le=100_000)
+
     # ---- Website Intelligence (POST /api/analyze-website) ----
     website_analysis_enabled: bool = True
     # Per-client sliding window (analyses per window) and global concurrent analyses.
@@ -61,6 +65,13 @@ class Settings(BaseSettings):
     @property
     def explainer_preloaded(self) -> bool:
         return (not self.is_development) if self.preload_explainer is None else self.preload_explainer
+
+    @property
+    def api_rate_limit(self) -> int:
+        """Effective per-minute limit; 0 means no limit."""
+        if self.api_rate_limit_per_minute is None:
+            return 0 if self.is_development else 120
+        return self.api_rate_limit_per_minute
 
     @property
     def docs_enabled(self) -> bool:
